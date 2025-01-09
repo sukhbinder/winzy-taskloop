@@ -1,6 +1,6 @@
 [project]
 name = "winzy-taskloop"
-version = "0.0.1"
+version = "0.1.0"
 description = "Run tasks in loop from cli"
 readme = "README.md"
 authors = [{name = "sukhbinder singh"}]

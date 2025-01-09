@@ -21,7 +21,9 @@ winzy install winzy-taskloop
 ```
 ## Usage
 
-Usage instructions go here.
+Use this to look task from cli. 
+
+![demo of winzy taskloop](https://raw.githubusercontent.com/sukhbinder/winzy-taskloop/refs/heads/main/demo.gif)
 
 ## Development
 
