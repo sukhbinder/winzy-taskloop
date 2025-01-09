@@ -10,8 +10,10 @@ def test_create_parser():
 
     assert parser is not None
 
-    result = parser.parse_args(["--test", "hello"])
-    assert result.test == "hello"
+    result = parser.parse_args(["hello"])
+    assert result.run == "hello"
+    assert result.till == "15m"
+    assert result.every == "30s"
 
 
 def test_plugin(capsys):

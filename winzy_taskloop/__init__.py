@@ -1,5 +1,4 @@
 import winzy
-import argparse
 import time
 import subprocess
 import signal
