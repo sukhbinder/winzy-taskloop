@@ -1,3 +1,5 @@
+import argparse
+
 import winzy
 import time
 import subprocess
@@ -63,15 +65,33 @@ def main(args):
 
 
 def create_parser(subparser):
-    parser = subparser.add_parser("taskloop", description="Run tasks in loop from cli")
-    # Add subprser arguments here.
-    parser.add_argument("run", help="Command to run")
-    parser.add_argument(
-        "-e", "--every", default="30s", help="Interval between runs (e.g., 30s, 5m, 1h)"
+    EXAMPLE = """
+Examples
+
+Here are some example ``winzy`` commands:
+
+```
+# Run a task every 30 seconds
+winzy taskloop -e 30s 'echo hello'
+
+# Run a task for 15 minutes
+winzy taskloop -t 15m 'python my_script.py'
+```
+
+"""
+
+    parser = subparser.add_parser(
+        "taskloop",
+        description="Run tasks in loop from cli\n\nExample: winzy taskloop -e 30s -t 15m 'echo hello' or python my_script.py",
+        epilog=EXAMPLE,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    # Add subparser arguments here.
+    parser.add_argument("run", help="Command to run. Example: echo hello or python my_script.py")
     parser.add_argument(
-        "-t", "--till", default="15m", help="Total duration to run (e.g., 30m, 1h)"
-    )
+        "-e", "--every", default="30s", help="Interval between runs e.g., 30s, 5m, 1h. Default is 30s.")
+    parser.add_argument(
+        "-t", "--till", default="15m", help="Total duration to run before stopping (e.g., 30m, 1h). Default is 15m.")
     return parser
 
 
@@ -91,6 +111,5 @@ class WinzyPlugin:
     def hello(self, args):
         # this routine will be called when 'winzy taskloop' is called.
         print("Hello! This is an example ``winzy`` plugin.")
-
 
 taskloop_plugin = WinzyPlugin()
